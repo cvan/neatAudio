@@ -1,5 +1,5 @@
 {
-  "name": "neatAudio",
+  "name": "neat-audio",
   "version": "0.0.0",
   "description": "A simple, neat promise wrapper for the web Audio Context API. Get and play sounds from urls with ease.",
   "main": "neat-audio-js.js",
