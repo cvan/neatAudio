@@ -1,6 +1,6 @@
 {
   "name": "neat-audio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple, neat promise wrapper for the web Audio Context API. Get and play sounds from urls with ease.",
   "main": "neat-audio-js.js",
   "dependencies": {
@@ -15,6 +15,7 @@
     "url": "git://github.com/iqrow/neatAudio.git"
   },
   "keywords": [
+    "neat",
     "audio",
     "context",
     "web",
