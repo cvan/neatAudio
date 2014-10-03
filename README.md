@@ -18,11 +18,11 @@ var scream;
 
 // Load the sound buffers into variable
 NeatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
-  fooSound = soundBuffer;
-});
+  scream = soundBuffer;
 
-// Play the sound
-NeatAudio.playSound(scream);
+  // Play the sound
+  NeatAudio.playSound(scream);
+});
 ```
 
 ### Fetch Multiple Sounds
@@ -46,8 +46,8 @@ Promise.all([
   sounds.click = values[0];
   sounds.shick = values[1];
   sounds.boom = values[2];
+  
+  // Playing any of them
+  NeatAudio.playSound(sounds.boom);
 });
-
-// Playing any of them
-NeatAudio.playSound(sounds.boom);
 ```
