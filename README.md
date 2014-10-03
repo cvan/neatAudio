@@ -11,39 +11,43 @@ You'll need to use a Promise pattern with neatAudio, since it returns promises.
 ### Fetch a Sound
 
 ```javascript
+var neatAudio = require('neat-audio');
+
 // Declare a variable to look after your sound buffer
-var fooSound;
+var scream;
 
 // Load the sound buffers into variable
-NeatAudio.fetchSound('soundFoo.wav').then(function(soundBuffer){
+NeatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
   fooSound = soundBuffer;
 });
 
 // Play the sound
-NeatAudio.playSound(sounds.foo);
+NeatAudio.playSound(scream);
 ```
 
 ### Fetch Multiple Sounds
 
 ```javascript
+var neatAudio = require('neat-audio');
+
 // Declare some variables to look after your sound buffers
 var sounds = {
-  foo: null,
-  bar: null,
-  baz: null
+  click: null,
+  shick: null,
+  boom: null
 };
 
 // Load the sound buffers into local variables
 Promise.all([
-  NeatAudio.fetchSound('soundFoo.wav'),
-  NeatAudio.fetchSound('soundBar.wav'),
-  NeatAudio.fetchSound('soundBaz.wav')
+  NeatAudio.fetchSound('click.wav'),
+  NeatAudio.fetchSound('shick.wav'),
+  NeatAudio.fetchSound('boom.wav')
 ]).then(function(values) {
-  sounds.foo = values[0];
-  sounds.bar = values[1];
-  sounds.baz = values[2];
+  sounds.click = values[0];
+  sounds.shick = values[1];
+  sounds.boom = values[2];
 });
 
 // Playing any of them
-NeatAudio.playSound(sounds.foo);
+NeatAudio.playSound(sounds.boom);
 ```
