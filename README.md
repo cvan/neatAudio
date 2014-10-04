@@ -29,6 +29,7 @@ neatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
 
 ```javascript
 var neatAudio = require('neat-audio');
+var Promise = require('es6-promise'); // or some other promise lib/polyfill
 
 // Declare some variables to look after your sound buffers
 var sounds = {
