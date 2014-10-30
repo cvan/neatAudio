@@ -1,8 +1,5 @@
 var Promise = require('es6-promise').Promise;
 
-var AudioContext = window.AudioContext || window.webkitAudioContext || null;
-var audioContext = new AudioContext();
-
 function requestSound(url) {
   return new Promise(
     function(resolve) {
@@ -33,6 +30,25 @@ function decodeAudio(arrayBuffer) {
  */
 var NeatAudio = {
 
+  audioContext: null,
+
+  /**
+   * Initialises neatAudio, paying special attention to the environment and if
+   * it supports the AudioContext or not.
+   * @param {{}} environment
+   */
+  init: function(environment) {
+    var AudioContext = environment && environment.AudioContext ||
+      environment && environment.webkitAudioContext ||
+      null;
+
+    if (!AudioContext) {
+      throw 'AudioContext is not supported in this environment.';
+    }
+
+    this.audioContext = new AudioContext();
+  },
+
   /**
    * Fetches a sound through XMLHttpRequest and then decodes it.
    * Returns a promise that resolves after decoding has completed.
@@ -40,6 +56,11 @@ var NeatAudio = {
    * @returns {Promise}
    */
   fetchSound: function(url) {
+
+    if (!this.audioContext) {
+      throw 'No audioContext found, has neatAudio.init(environment) been called?';
+    }
+
     return new Promise(
       function(resolve) {
         resolve(requestSound(url)
@@ -56,6 +77,11 @@ var NeatAudio = {
    * @param buffer  the buffer you wish to play
    */
   playSound: function(buffer) {
+
+    if (!this.audioContext) {
+      throw 'No audioContext found, has neatAudio.init(environment) been called?';
+    }
+
     var source = audioContext.createBufferSource();
     source.buffer = buffer;
     source.connect(audioContext.destination);
