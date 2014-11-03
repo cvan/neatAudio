@@ -1,7 +1,7 @@
 neatAudio
 ===========
 
-A simple, neat promise wrapper for the web Audio Context API. Get and play sounds from urls with ease.
+A simple, neat promise wrapper for the web Audio Context API, designed for use with browserify. Get and play sounds from urls with ease.
 
 ## Usage
 
@@ -13,12 +13,12 @@ You'll need to use a Promise pattern with neatAudio, since it returns promises.
 ```javascript
 var neatAudio = require('neat-audio');
 
-// Declare a variable to look after your sound buffer
-var scream;
+// Init neatAudio
+neatAudio.init(window);
 
 // Load the sound buffers into variable
 neatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
-  scream = soundBuffer;
+  var scream = soundBuffer;
 
   // Play the sound
   neatAudio.playSound(scream);
@@ -30,6 +30,9 @@ neatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
 ```javascript
 var neatAudio = require('neat-audio');
 var Promise = require('es6-promise'); // or some other promise lib/polyfill
+
+// Init neatAudio
+neatAudio.init(window);
 
 // Declare some variables to look after your sound buffers
 var sounds = {
@@ -52,3 +55,7 @@ Promise.all([
   neatAudio.playSound(sounds.boom);
 });
 ```
+
+## Todo
+
+[ ] Add tests for getting and playing sounds
