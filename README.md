@@ -58,4 +58,6 @@ Promise.all([
 
 ## Todo
 
+[ ] Modify project to show browserify bundling
+[ ] Test with browser `window`
 [ ] Add tests for getting and playing sounds
