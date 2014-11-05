@@ -13,12 +13,6 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
 
-    // list of files / patterns to load in the browser
-    files: [
-      'test/*.js'
-    ],
-
-
     // list of files to exclude
     exclude: [
       '**/*.mp3'

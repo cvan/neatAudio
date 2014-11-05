@@ -8,7 +8,14 @@
   },
   "devDependencies": {
     "karma": "~0.12.24",
-    "karma-jasmine": "~0.2.3"
+    "karma-jasmine": "~0.2.3",
+    "gulp": "~3.8.10",
+    "gulp-util": "~3.0.1",
+    "vinyl-source-stream": "~1.0.0",
+    "watchify": "~2.1.1",
+    "browserify": "~6.2.0",
+    "gulp-notify": "~2.0.0",
+    "gulp-karma": "0.0.4"
   },
   "scripts": {
     "test": "jasmine-node spec/"

@@ -1,4 +1,4 @@
-var neatAudio = require('../neat-audio');
+var neatAudio = require('./test/bundle');
 
 describe('neatAudio', function () {
 
