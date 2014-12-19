@@ -1,6 +1,8 @@
-var neatAudio = require('./test/bundle');
+//var neatAudio = require('./test/bundle');
 
 describe('neatAudio', function () {
+
+  //var neatAudio = NeatAudio;
 
   it('should error if the environment does not support AudioContext', function () {
     expect(function () {

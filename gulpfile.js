@@ -12,10 +12,7 @@ var testFiles = [
 
 gulp.task('test', function() {
   return gulp.src(testFiles)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
+    .pipe(karma({ configFile: 'karma.conf.js'}))
     .on('error', function(err) {
       throw err;
     });
