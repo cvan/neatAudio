@@ -14,16 +14,6 @@ function requestSound(url) {
   );
 }
 
-function decodeAudio(arrayBuffer) {
-  return new Promise(
-    function(resolve) {
-      audioContext.decodeAudioData(arrayBuffer, function(buffer) {
-        resolve(buffer);
-      });
-    }
-  );
-}
-
 /**
  * A simple Audio API for interacting with the young web audioContext
  * @type {{}}
@@ -49,6 +39,20 @@ var NeatAudio = {
     this.audioContext = new AudioContext();
   },
 
+  _decodeAudio: function(arrayBuffer) {
+    var self = this;
+
+    return new Promise(
+      function(resolve) {
+        self.audioContext.decodeAudioData(arrayBuffer, function(buffer) {
+          resolve(buffer);
+        }, function(err) {
+          resolve(err);
+        });
+      }
+    );
+  },
+
   /**
    * Fetches a sound through XMLHttpRequest and then decodes it.
    * Returns a promise that resolves after decoding has completed.
@@ -56,8 +60,9 @@ var NeatAudio = {
    * @returns {Promise}
    */
   fetchSound: function(url) {
+    var self = this;
 
-    if (!this.audioContext) {
+    if (!self.audioContext) {
       throw 'No audioContext found, has neatAudio.init(environment) been called?';
     }
 
@@ -65,7 +70,7 @@ var NeatAudio = {
       function(resolve) {
         resolve(requestSound(url)
           .then(function(arrayBuffer) {
-            return decodeAudio(arrayBuffer);
+            return self._decodeAudio(arrayBuffer);
           })
         );
       }
@@ -82,9 +87,9 @@ var NeatAudio = {
       throw 'No audioContext found, has neatAudio.init(environment) been called?';
     }
 
-    var source = audioContext.createBufferSource();
+    var source = this.audioContext.createBufferSource();
     source.buffer = buffer;
-    source.connect(audioContext.destination);
+    source.connect(this.audioContext.destination);
     source.start(0);
   }
 
