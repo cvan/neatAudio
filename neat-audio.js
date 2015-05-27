@@ -1,4 +1,4 @@
-var Promise = require('es6-promise').Promise;
+require('es6-promise').polyfill();
 
 function requestSound(url) {
   return new Promise(
