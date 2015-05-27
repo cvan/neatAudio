@@ -17,11 +17,13 @@ var neatAudio = require('neat-audio');
 neatAudio.init(window);
 
 // Load the sound buffers into variable
-neatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer){
+neatAudio.fetchSound('willhelm_scream.wav').then(function(soundBuffer) {
   var scream = soundBuffer;
 
   // Play the sound
   neatAudio.playSound(scream);
+}).catch(function(err) {
+  console.error('Could not fetch sound!', err);
 });
 ```
 
@@ -50,7 +52,7 @@ Promise.all([
   sounds.click = values[0];
   sounds.shick = values[1];
   sounds.boom = values[2];
-  
+
   // Playing any of them
   neatAudio.playSound(sounds.boom);
 });

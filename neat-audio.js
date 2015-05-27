@@ -2,12 +2,20 @@ var Promise = require('es6-promise').Promise;
 
 function requestSound(url) {
   return new Promise(
-    function(resolve) {
+    function(resolve, reject) {
       var request = new XMLHttpRequest();
       request.open('GET', url, true);
       request.responseType = 'arraybuffer';
       request.onload = function() {
-        resolve(request.response);
+        // It could be a successful response but not an OK one (e.g., 3xx, 4xx).
+        if (request.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(new Error(request.statusText));
+        }
+      };
+      request.onerror = function() {
+        reject(new Error('Network Error'));
       };
       request.send();
     }
